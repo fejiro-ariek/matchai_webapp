@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Space+Mono&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* MatchAI Visual System — Section 6 of brand brief
+   All values match brief hex codes converted to HSL */
+@layer base {
+  :root {
+    /* Light mode kept for system fallback only — app is dark by default */
+    --background: 220 20% 97%;
+    --foreground: 222 30% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 30% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 30% 10%;
+    --primary: 252 100% 68%;
+    --primary-foreground: 0 0% 100%;
+    --lavender-glow: 252 90% 60%;
+    --secondary: 220 20% 94%;
+    --secondary-foreground: 222 30% 10%;
+    --muted: 220 20% 94%;
+    --muted-foreground: 222 15% 40%;
+    --accent: 252 100% 68%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 15% 88%;
+    --input: 220 15% 88%;
+    --ring: 252 100% 68%;
+    --radius: 0.75rem;
+
+    --sidebar-background: 220 20% 97%;
+    --sidebar-foreground: 222 30% 10%;
+    --sidebar-primary: 252 100% 68%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 20% 94%;
+    --sidebar-accent-foreground: 222 30% 10%;
+    --sidebar-border: 220 15% 88%;
+    --sidebar-ring: 252 100% 68%;
+  }
+
+  .dark {
+    /* Background & Surfaces (brief 6) */
+    --background: 230 22% 5%;          /* #0A0B10 */
+    --surface-1: 228 21% 9%;           /* #11131A — primary surface */
+    --surface-2: 226 26% 12%;          /* #151925 — secondary surface */
+    --surface-3: 222 28% 15%;          /* #1A2030 — elevated surface */
+    --card: 228 21% 9%;                /* #11131A */
+    --card-foreground: 222 25% 97%;    /* #F5F7FB */
+    --popover: 226 26% 12%;            /* #151925 */
+    --popover-foreground: 222 25% 97%;
+
+    /* Text */
+    --foreground: 222 25% 97%;         /* #F5F7FB */
+    --foreground-secondary: 222 28% 78%; /* #B8C0D4 */
+    --muted-foreground: 222 18% 60%;   /* #8B93A8 */
+    --foreground-disabled: 222 12% 46%; /* #667085 */
+
+    /* Brand Accents */
+    --primary: 252 100% 68%;           /* #7C5CFF — primary violet */
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 252 100% 71%;     /* #8A6BFF */
+    --primary-pressed: 252 86% 61%;    /* #694AEF */
+    --indigo: 226 100% 68%;            /* #5D7CFF */
+    --lavender-glow: 252 100% 83%;     /* #B7A8FF */
+
+    /* Surfaces / structure */
+    --secondary: 226 26% 12%;          /* #151925 */
+    --secondary-foreground: 222 25% 97%;
+    --muted: 222 28% 15%;              /* #1A2030 */
+    --accent: 252 100% 68%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Utility */
+    --destructive: 0 84% 60%;          /* #EF4444 */
+    --destructive-foreground: 0 0% 100%;
+    --success: 142 71% 45%;            /* #22C55E */
+    --warning: 38 92% 50%;             /* #F59E0B */
+    --info: 199 89% 60%;               /* #38BDF8 */
+
+    /* Borders */
+    --border: 224 21% 21%;             /* #283042 — soft */
+    --border-strong: 222 18% 28%;      /* #384157 */
+    --input: 224 21% 21%;
+    --ring: 252 100% 68%;
+
+    --sidebar-background: 230 22% 5%;
+    --sidebar-foreground: 222 25% 97%;
+    --sidebar-primary: 252 100% 68%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 226 26% 12%;
+    --sidebar-accent-foreground: 222 25% 97%;
+    --sidebar-border: 224 21% 21%;
+    --sidebar-ring: 252 100% 68%;
+
+    --chart-1: 252 100% 68%;
+    --chart-2: 226 100% 68%;
+    --chart-3: 252 100% 83%;
+    --chart-4: 199 89% 60%;
+    --chart-5: 142 71% 45%;
+  }
+
+  /* Radii scale (brief: btn 12 / inputs 12 / pills 999 / cards 20 / auth-pricing 24) */
+  :root {
+    --radius-btn: 0.75rem;       /* 12px */
+    --radius-input: 0.75rem;     /* 12px */
+    --radius-pill: 9999px;
+    --radius-card: 1.25rem;      /* 20px */
+    --radius-xl: 1.5rem;         /* 24px — auth/pricing */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer utilities {
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--lavender-glow)));
+  }
+
+  .gradient-primary {
+    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-pressed)));
+  }
+
+  .gradient-glow {
+    background-image: radial-gradient(circle at 50% 0%, hsl(var(--primary) / 0.18), transparent 60%);
+  }
+
+  .glass {
+    background-color: hsl(var(--surface-1) / 0.7);
+    backdrop-filter: blur(16px);
+    border: 1px solid hsl(var(--border));
+  }
+
+  .surface-1 { background-color: hsl(var(--surface-1)); }
+  .surface-2 { background-color: hsl(var(--surface-2)); }
+  .surface-3 { background-color: hsl(var(--surface-3)); }
+
+  .text-secondary { color: hsl(var(--foreground-secondary)); }
+  .text-disabled { color: hsl(var(--foreground-disabled)); }
+
+  .border-strong { border-color: hsl(var(--border-strong)); }
+
+  .lavender-glow {
+    box-shadow: 0 0 60px -10px hsl(var(--lavender-glow) / 0.25);
+  }
+}
